@@ -74,8 +74,8 @@ label_encabezado = ctk.CTkLabel(master=conversor, text="Conversor de temperatura
 label_encabezado.place(relx=0.5, rely=0.05, anchor="center")
 
 #Label descripción
-label_descripcion = ctk.CTkLabel(master=conversor, text="Convierte entre grados celcius, Fahrenheit y Kelvin.", font=("Segoe UI", 15), wraplength=250, anchor="nw", justify="left")
-label_descripcion.place(relx=0.1, rely=0.1)
+label_descripcion = ctk.CTkLabel(master=conversor, text="Convierte entre grados celsius, Fahrenheit y Kelvin.", font=("Segoe UI", 15), wraplength=250, anchor="nw", justify="center")
+label_descripcion.place(relx=0.2, rely=0.1)
 
 #Label, combobox y entrada temperatura - desde.
 label_temperatura_desde = ctk.CTkLabel(master=conversor, text="Desde", font=("Segoe UI", 15))
