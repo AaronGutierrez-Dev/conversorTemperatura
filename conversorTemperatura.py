@@ -1,17 +1,16 @@
-#Importar librerias necesarias.
-import tkinter as tk
+#Importar librerias necesarias. Para este caso se utilizaran customtkinter ya que presenta una estética mejor que tkinter.
 import customtkinter as ctk
-import threading
-import os
 
-#Creación de la lista
+#Creación de la lista: celsius, fahrenheit y kelvin como principales temperaturas (más utilizadas).
 
 magnitudes = ["Celsius", "Fahrenheit", "Kelvin"]
 
-#FUNCIONES
+#Se plantea la función de conversión base donde por medio de condicionales se establecen las posibles operaciones de conversión que el usuari opodrá seleccionar.
 
 def conversion_temperatura():
+    #Se utiliza la estructura de manejo de excepciones TRY - EXCEPT para tener mayor control en caso de que ocurra un error al momento de ejecutar el código.
     try:
+        #Por medio del método .get se obtienen los datos como lo son el valor de temperatura a convertir y la selección de las temperaturas desde a hacia.
         valor_ingreso = float(entry_temperatura_desde.get())
         desde = combobox_temperatura_desde.get()
         hacia = combobox_temperatura_hacia.get()
@@ -36,12 +35,13 @@ def conversion_temperatura():
             resultado = None
 
         
-        #Mostrar el resultado
+        #Mostrar el resultado: por medio de los métodos .configure(), .delete(), e insert() se establecen las ordenes de que la casilla de resultado pueda ser modificada, se borre cualquier resultado anterior, aparezca el resultado nuevo y este permaneza en solo lectura para que no sea modificado.
         if resultado is not None:
             label_resultado.configure(state="normal")
             label_resultado.delete(0, ctk.END)
             label_resultado.insert(0, f"°{valor_ingreso} {desde} equivalen a °{resultado: .2f} {hacia}")
             label_resultado.configure(state="readonly")
+        #En caso de que la conversión no sea válida por errores numéricos por ejemplo, se mostrará el mensaje de que la conversión no es válida entre las unidades.
         else:
             label_resultado.configure(state="normal")
             label_resultado.delete(0, ctk.END)
@@ -49,7 +49,7 @@ def conversion_temperatura():
             label_resultado.configure(state="readonly")
 
     
-    #Control errores
+    #Control errores: según el tipo de error que aparezca en la plataforma, se mostrará en la casilla de resultado.
     except ValueError:
         label_resultado.configure(state="normal")
         label_resultado.delete(0, ctk.END)
@@ -100,8 +100,5 @@ button_convertir.place(relx=0.5, rely=0.7, anchor="center")
 
 label_resultado = ctk.CTkEntry(master=conversor, width=350, height=20, state='readonly', font=("Segoe UI", 15))
 label_resultado.place(relx=0.5, rely=0.85, anchor="center")
-
-
-
 
 conversor.mainloop()
